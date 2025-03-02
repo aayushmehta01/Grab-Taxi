@@ -143,3 +143,71 @@ Example:
   "message": "Invalid email or password"
 }
 ```
+
+<br><br><br>
+
+# User Profile Endpoint
+
+## Endpoint
+`GET /api/users/profile`
+
+## Description
+This endpoint is used to retrieve the profile of the authenticated user.
+
+## Response
+### Success
+
+- Status Code: `200 OK`
+- Response Body:
+```json
+{
+  "_id": "USER_ID_HERE",
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "socketId": null
+}
+```
+
+## Unauthorized
+
+- Status Code: `401 Unauthorized`
+- Respone Body:
+```json
+{
+  "message": "Authentication required"
+}
+```
+
+<br><br><br>
+
+# User Logout Endpoint
+
+## Endpoint
+`GET /api/users/logout`
+
+## Description
+This endpoint is used to log out the authenticated user by clearing the authentication token.
+
+## Response
+### Success
+
+- Status Code: `200 OK`
+- Response Body:
+```json
+{
+  "message": "Logout successfully"
+}
+```
+
+## Unauthorized
+
+- Status Code: `401 Unauthorized`
+- Respone Body:
+```json
+{
+  "message": "Authentication required"
+}
+```
