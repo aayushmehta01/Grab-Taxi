@@ -68,3 +68,78 @@ Example:
   ]
 }
 ```
+
+<br><br><br>
+
+# User Login Endpoint
+
+## Endpoint
+`POST /api/users/login`
+
+## Description
+This endpoint is used to authenticate a user. It validates the input data, checks the user's credentials, and returns a JSON Web Token (JWT) along with the user details.
+
+## Request Body
+The request body should be a JSON object with the following fields:
+
+- `email`: A valid email address (required)
+- `password`: A string with a minimum length of 6 characters (required)
+
+Example:
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+## Response Body
+The response body will be a JSON object with the following fields:
+
+- Status Code: `200 OK`
+- Respone Body:
+```json
+{
+  "token": "JWT_TOKEN_HERE",
+  "user": {
+    "_id": "USER_ID_HERE",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "hashed_pass_using_bcryptjs"
+  }
+}
+```
+
+## Validation Errors
+- Status Code: `400 Bad Request`
+- Respone Body:
+
+Example:
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid email",
+      "param": "email",
+      "location": "body"
+    },
+    {
+      "msg": "Password must be at least 6 characters",
+      "param": "password",
+      "location": "body"
+    }
+  ]
+}
+```
+
+## Invalid Credentials
+- Status Code: `401 Unauthorized`
+- Respone Body:
+```json
+{
+  "message": "Invalid email or password"
+}
+```
